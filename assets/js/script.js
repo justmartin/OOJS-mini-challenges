@@ -1,7 +1,7 @@
 /*Create an object called Multiplier with two methods: multiply and getCurrentValue. multiply should 
 initially return the number supplied * 1 and from then on whatever the current value is times the 
 number supplied. getCurrentValue should return the last answer returned from multiply.*/
-/*
+/* our interpretation of the directions (take 5ish)
 var Multiplier = {
 	i: 1,
 	lastValue: 0,
@@ -34,13 +34,16 @@ allow you to add a new photo, list all photos, and access a specific photo by th
 Each Photo should store the photo's file name and the location the photo was taken in as strings. Create 
 instances of each object defined to prove that your object model works.*/
 
+//creating a photo object that takes name and location. will be used to populate album object.
+function Photo(name, location) {
+	this.name = name;
+	this.location = location;
+};
+
+//creating album object to store photos in blank array. contains functions to add photos to the array, lists the array
+//and select a photo based on index
 var Album = {
 	photos: [],
-
-	photo: function(name, location) {
-		this.name = name;
-		this.location = location;
-	},
 
 	add_photo: function(photo) {
 		this.photos.push(photo);
@@ -53,17 +56,18 @@ var Album = {
 	select_photo: function(index) {
 		return this.photos[index];
 	},
-}
+};
 
-var photo_one = new Album.photo("First Photo", "Seattle");
-var photo_two = new Album.photo("Second Photo", "Portland");
-var photo_three = new Album.photo("Third Photo", "Vancouver BC");
-var photo_four = new Album.photo("Fourth Photo", "Los Angeles");
+//populating the array with photos and testing functions
+var photo_one = new Photo("First Photo", "Seattle");
+var photo_two = new Photo("Second Photo", "Portland");
+var photo_three = new Photo("Third Photo", "Vancouver BC");
+var photo_four = new Photo("Fourth Photo", "Los Angeles");
 Album.add_photo(photo_one);
 Album.add_photo(photo_two);
 Album.add_photo(photo_three);
 Album.add_photo(photo_four);
-console.log(Album.list_photos);
+console.log(Album.list_photos());
 console.log(Album.photos);
 console.log(Album.select_photo(3));
 
