@@ -1,7 +1,8 @@
 /*Create an object called Multiplier with two methods: multiply and getCurrentValue. multiply should 
 initially return the number supplied * 1 and from then on whatever the current value is times the 
 number supplied. getCurrentValue should return the last answer returned from multiply.*/
-/* our interpretation of the directions (take 5ish)
+
+//our interpretation of the directions (take 5ish)
 var Multiplier = {
 	i: 1,
 	lastValue: 0,
@@ -34,7 +35,7 @@ include an Album object that can contain many Photo objects in its photos attrib
 allow you to add a new photo, list all photos, and access a specific photo by the order it was added. 
 Each Photo should store the photo's file name and the location the photo was taken in as strings. Create 
 instances of each object defined to prove that your object model works.*/
-/*
+
 //creating a photo object that takes name and location. will be used to populate album object.
 function Photo(name, location) {
 	this.name = name;
@@ -71,7 +72,7 @@ Album.add_photo(photo_four);
 console.log(Album.list_photos());
 console.log(Album.photos);
 console.log(Album.select_photo(3));
-*/
+
 /*-----------------------------------------------------------------------------------------------------------*/
 /*Create a prototypical Person object. From this object, extend a Teacher object and a Student object. 
 Each of these objects should have attributes and methods pertinent to what they describe. Also create a 
@@ -89,12 +90,18 @@ function Person(firstName, lastName) {
 function Teacher(firstName, lastName, subject) {
 	Person.apply(this, arguments); 
 	this.subject = subject;
+	teacher_intro = function() {
+		return "Hi, my name is " + this.firstName + " and I teach " + this.subject + ".";
+	};
 }
 
 //defines Student object with extension of Person
 function Student(firstName, lastName, year) {
 	Person.apply(this, arguments);
 	this.year = year;
+	student = function() {
+		return "Hi, my name is " + this.firstName + " and I am in grade " + this.year + ".";
+	};
 }
 
 //creates teachers and logs them to console
@@ -117,7 +124,7 @@ console.log(student2);
 var student3 = new Student("Alvin", "Marks", 11);
 console.log(student3);
 
-//defines School object consisting of two arrays and functions to populate those arrays
+//defines School object consisting of two arrays and functions to populate/select those arrays
 var School = {
 	teachers: [],
 	students: [],
@@ -128,20 +135,29 @@ var School = {
 
 	add_student: function(student) {
 		this.students.push(student);
-	}
+	},
+
+	select_teacher: function(index) {
+		return this.teachers[index];
+	},
+
+	select_student: function(index) {
+		return this.students[index];
+	},
 };
 
-//adds teachers to teachers array
+//adds teachers to teachers array and logs them
 School.add_teacher(teacher1);
 School.add_teacher(teacher2);
 School.add_teacher(teacher3);
-//logs teachers array
 console.log(School.teachers);
-//adds students to students array
+
+//adds students to students array and logs them
 School.add_student(student1);
 School.add_student(student2);
 School.add_student(student3);
-//logs students array
 console.log(School.students);
 
-
+//logs selected teacher and student from based on index
+console.log(School.select_teacher(2));
+console.log(School.select_student(1));
